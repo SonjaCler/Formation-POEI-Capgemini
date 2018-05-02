@@ -1,7 +1,5 @@
 package com.aplose.smooss.services;
 
-import javax.persistence.PersistenceException;
-
 import com.aplose.smooss.exception.EmailException;
 import com.aplose.smooss.model.User;
 
@@ -42,7 +40,6 @@ public class UserServiceTest extends TestCase {
 			User u2 = createGustave("gustave@gmail.com");
 			us.create(u2);
 			assertTrue(false);
-
 		} catch (EmailException e) {
 			assertTrue(true);
 		}

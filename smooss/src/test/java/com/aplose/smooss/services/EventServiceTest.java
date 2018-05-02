@@ -11,13 +11,18 @@ import junit.framework.TestCase;
 
 public class EventServiceTest extends TestCase {
 	
-	public void testFindEventsByUser() throws EmailException {
+	public void testFindEventsByUser() {
 		
 		UserService us = UserService.getInstance();
 		User u = new User();
 		u.setEmail("Gustave");
 		u.setPassword("password");
-		us.create(u);
+		try {
+			us.create(u);
+		} catch (EmailException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		EventService es = EventService.getInstance();
 		Event e = new Event();

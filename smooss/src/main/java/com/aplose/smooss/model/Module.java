@@ -11,7 +11,6 @@ public abstract class Module {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	long id;
 	private String name = "Default Module Name";
-	private TypeModule type = TypeModule.DefaultType;
 
 	public String getName() {
 		return name;
@@ -21,15 +20,7 @@ public abstract class Module {
 		this.name = name;
 	}
 	
-	public void setType(TypeModule type) {
-		this.type = type;
-	}
-	
-	public TypeModule getType() {
-		return this.type;
-	}
-	
 	public enum TypeModule {
-		DefaultType, PlaylistModule, TriCountModule, PicturesModule, ChatModule, MiniGameModule, CarpoolingModule, BringModule
+		PlaylistModule,TriCountModule,PicturesModule,ChatModule,MiniGameModule,CarpoolingModule,BringModule
 	}
 }

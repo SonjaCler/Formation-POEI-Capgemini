@@ -9,7 +9,8 @@
 	<packaging>jar</packaging>
 
 	<name>smooss</name>
-	<url>http://maven.apache.org</url>
+	<url>http://www.smooss.fr</url>
+	<description>Ce projet est le fil rouge de la formation POEI organisée par Aplose pour le compte de UpTo/FACE-Hérault dans le cadre du recrutement de Cap Gémini Montpellier</description>
 
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

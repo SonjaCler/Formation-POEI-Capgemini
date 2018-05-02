@@ -36,7 +36,7 @@ public class Comment {
 	}
 
 	public Instant getHour() {
-		return date;
+		return hour;
 	}
 
 	public void setHour(Instant hour) {

@@ -1,6 +1,5 @@
 package com.aplose.smooss.services;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import javax.persistence.TypedQuery;
 import com.aplose.smooss.factory.FactoryModule;
 import com.aplose.smooss.model.Event;
 import com.aplose.smooss.model.Module;
-import com.aplose.smooss.model.PicturesModule;
 import com.aplose.smooss.model.Module.TypeModule;
 import com.aplose.smooss.model.User;
 
@@ -21,7 +19,8 @@ public class EventService {
 	private TypedQuery<Event> queryFindEventByUser;
 	private static FactoryModule fm = new FactoryModule();
 
-	private EventService() {}
+	private EventService() {
+	}
 
 	public static EventService getInstance() {
 		if (INSTANCE == null) {
@@ -41,14 +40,6 @@ public class EventService {
 		Event evt = JPASingleton.getInstance().getEntityManager().find(Event.class, id);
 		return evt;
 	}
-	
-	public void modify(Event evt) {
-		if (!JPASingleton.getInstance().getEntityManager().getTransaction().isActive()) {
-			JPASingleton.getInstance().getEntityManager().getTransaction().begin();
-		}
-		JPASingleton.getInstance().getEntityManager().merge(evt);
-		JPASingleton.getInstance().getEntityManager().getTransaction().commit();
-	}
 
 	public List<Event> findEventsByUser(User user) {
 		if (queryFindEventByUser == null) {
@@ -64,17 +55,6 @@ public class EventService {
 		}
 		return result;
 	}
-	
-	public Module findModuleByEvent(Event e, TypeModule t) {
-		
-		Module module = null;
-		for(Module m : e.getModules()) {
-			if(m.getType() == t) {
-				module = m;
-			}
-		}
-		return module;
-	}
 
 	// Flavien && Rachid : START: ajout d'un module à un event
 	public void addModuleByEvent(Event evt, TypeModule tm) {
@@ -86,6 +66,12 @@ public class EventService {
 		JPASingleton.getInstance().getEntityManager().getTransaction().commit();
 	}
 	// Flavien && Rachid : END
+
+	public void modify(Event evt) {
+		JPASingleton.getInstance().getEntityManager().getTransaction().begin();
+		JPASingleton.getInstance().getEntityManager().merge(evt);
+		JPASingleton.getInstance().getEntityManager().getTransaction().commit();
+	}
 	
 	public void delete(Event evt) {
 		JPASingleton.getInstance().getEntityManager().getTransaction().begin();
