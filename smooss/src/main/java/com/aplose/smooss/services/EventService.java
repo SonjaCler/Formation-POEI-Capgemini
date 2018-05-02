@@ -42,12 +42,13 @@ public class EventService {
 		return evt;
 	}
 	
-	public void modify(Event evt) {
+	public Event modify(Event evt) {
 		if (!JPASingleton.getInstance().getEntityManager().getTransaction().isActive()) {
 			JPASingleton.getInstance().getEntityManager().getTransaction().begin();
 		}
 		JPASingleton.getInstance().getEntityManager().merge(evt);
 		JPASingleton.getInstance().getEntityManager().getTransaction().commit();
+		return evt;
 	}
 
 	public List<Event> findEventsByUser(User user) {
